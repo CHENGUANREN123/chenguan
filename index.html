@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCG工作室 - 摄影 | 设计 | 网站 | 装修</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        :root {
+            --main: #003366;
+            --light: #f7f9fc;
+            --gray: #666;
+        }
+        body {
+            color: #333;
+            line-height: 1.7;
+            padding-top: 70px;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* 头部 */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            z-index: 999;
+        }
+        .header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: var(--main);
+        }
+        .nav ul {
+            display: flex;
+            gap: 20px;
+        }
+        .nav li a {
+            font-size: 15px;
+        }
+        .nav li a:hover {
+            color: var(--main);
+        }
+        .lang {
+            font-size: 14px;
+            color: #666;
+        }
+        .menu-btn {
+            display: none;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        /* Banner */
+        .banner {
+            width: 100%;
+            height: 420px;
+            background: var(--main);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .banner h1 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        .banner p {
+            font-size: 18px;
+        }
+
+        /* 标题 */
+        .title {
+            text-align: center;
+            padding: 50px 0 30px;
+        }
+        .title h2 {
+            font-size: 28px;
+            color: var(--main);
+        }
+        .title p {
+            color: var(--gray);
+        }
+
+        /* 服务 */
+        .service {
+            background: var(--light);
+            padding: 20px 0 60px;
+        }
+        .grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .item {
+            flex: 1;
+            min-width: 280px;
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .item h3 {
+            color: var(--main);
+            margin-bottom: 10px;
+        }
+
+        /* 案例展示（不会变形版本） */
+        .case {
+            padding: 20px 0 60px;
+        }
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .case-item {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .case-img {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+        .case-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .case-name {
+            text-align: center;
+            padding: 12px;
+        }
+
+        /* 关于 */
+        .about {
+            background: var(--light);
+            padding: 20px 0 60px;
+        }
+        .flex {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        .text {
+            flex: 1;
+        }
+        .img-box {
+           width: 380px;
+            height: 260px;
+            background: #dce7f5;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        /* 联系表单 */
+        .contact {
+            padding: 20px 0 60px;
+        }
+        .contact-box {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .form-item {
+            margin-bottom: 18px;
+        }
+        input, select, textarea {
+            width: 100%;
+            height: 45px;
+            padding: 0 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            outline: none;
+        }
+        textarea {
+            height: 120px;
+            padding: 15px;
+        }
+        .submit-btn {
+            width: 100%;
+            height: 48px;
+            background: var(--main);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: #00284d;
+            color: #fff;
+            padding: 50px 0 20px;
+        }
+        .foot-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        .foot-wrap > div {
+            flex: 1;
+            min-width: 180px;
+        }
+        .copy {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #003a6b;
+            font-size: 13px;
+            color: #999;
+        }
+
+        /* 手机适配 */
+        @media (max-width: 768px) {
+            .nav { display: none; }
+            .menu-btn { display: block; }
+            .flex { flex-direction: column; }
+            .case-grid { grid-template-columns: repeat(2, 1fr); }
+            .banner h1 { font-size: 26px; }
+            .banner { height: 280px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 头部 -->
+<header class="header">
+    <div class="container">
+        <div class="logo">CCG工作室</div>
+        <nav class="nav">
+            <ul>
+                <li><a href="https://www.4399.com" target="_blank">首页</a></li>
+                <li><a href="https://www.4399.com" target="_blank">关于我们</a></li>
+                <li><a href="https://www.4399.com" target="_blank">服务项目</a></li>
+                <li><a href="https://www.4399.com" target="_blank">证件照/婚纱</a></li>
+                <li><a href="https://www.4399.com" target="_blank">网站制作</a></li>
+                <li><a href="https://www.4399.com" target="_blank">广告制作</a></li>
+                <li><a href="https://www.4399.com" target="_blank">室内设计</a></li>
+                <li><a href="https://www.4399.com" target="_blank">案例展示</a></li>
+                <li><a href="https://www.4399.com" target="_blank">联系我们</a></li>
+            </ul>
+        </nav>
+       <div class="lang">
+           <a href="https://www.4399.com" >中文</a>
+           |
+           <a href="https://www.4399.com" >EN</a>
+       </div>
+        <div class="menu-btn">☰</div>
+    </div>
+</header>
+
+<!-- Banner -->
+<div class="banner">
+    <div>
+        <h1>CCG工作室 · 一站式综合服务</h1>
+        <p>证件照 | 婚纱照 | 网站制作 | 广告设计 | 室内装修</p>
+    </div>
+</div>
+
+<!-- 服务 -->
+<section class="service">
+    <div class="container">
+        <div class="title">
+            <h2>服务项目</h2>
+            <p>OUR SERVICE · 专业 · 高效 · 品质</p>
+        </div>
+        <div class="grid">
+            <div class="item"><h3>证件照</h3><p>专业证件照、形象照、签证照、精修排版</p></div>
+            <div class="item"><h3>婚纱照</h3><p>婚纱摄影、旅拍、婚礼跟拍、情侣写真</p></div>
+            <div class="item"><h3>网站制作</h3><p>企业官网、商城、小程序、响应式网站</p></div>
+            <div class="item"><h3>广告制作</h3><p>LOGO、海报、宣传单、文化墙、灯箱</p></div>
+            <div class="item"><h3>室内设计</h3><p>家装、工装、效果图、全屋装修设计</p></div>
+            <div class="item"><h3>平面设计</h3><p>品牌VI、包装、展板、名片、视频剪辑</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- 案例展示（图片不会变形、不会撑破） -->
+<section class="case">
+    <div class="container">
+        <div class="title"><h2>案例展示</h2><p>OUR CASE · 精选作品参考</p></div>
+        <div class="case-grid">
+            <div class="case-item">
+                <div class="case-img">
+                    <img src="img/ccg.jpg" alt="案例">
+                </div>
+                <div class="case-name">证件照案例</div>
+            </div>
+            <div class="case-item">
+                <div class="case-img">
+                    <img src="img/ccge.jpg" alt="案例">
+                </div>
+                <div class="case-name">婚纱照案例</div>
+            </div>
+            <div class="case-item">
+                <div class="case-img">
+					<img src="img/llp.png" alt="案例">
+				</div>
+                <div class="case-name">网站制作案例</div>
+            </div>
+            <div class="case-item">
+                <div class="case-img">
+					<img src="img/ccge.jpg" alt="案例">
+				</div>
+                <div class="case-name">广告设计案例</div>
+            </div>
+            <div class="case-item">
+                <div class="case-img">
+					<img src="img/ccge.jpg" alt="案例">
+				</div>
+                <div class="case-name">室内设计案例</div>
+            </div>
+            <div class="case-item">
+                <div class="case-img">
+					<img src="img/ccge.jpg" alt="案例">
+				</div>
+                <div class="case-name">平面设计案例</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 关于我们 -->
+<section class="about">
+    <div class="container">
+        <div class="title"><h2>关于我们</h2><p>ABOUT US · 用心做好每一个作品</p></div>
+        <div class="flex">
+            <div class="text">
+                <p>CCG工作室是一家集摄影、设计、网站开发、广告制作、室内设计于一体的综合服务团队。</p>
+                <p>我们拥有多年行业经验，专注品质与服务，为个人与企业提供一站式解决方案。</p>
+            </div>
+            <div class="img-box">
+				<img src="img/lll.jpg" alt="案例">
+			</div>
+        </div>
+    </div>
+</section>
+
+<!-- 联系表单 -->
+<form action="https://formsubmit.co/1277927789@qq.com" method="POST">
+    <div class="form-item"><input type="text" name="姓名" placeholder="您的姓名" required></div>
+    <div class="form-item"><input type="tel" name="电话" placeholder="联系电话" required></div>
+    <div class="form-item">
+        <select name="服务类型">
+            <option value="">请选择服务类型</option>
+            <option>证件照/婚纱</option>
+            <option>网站制作</option>
+            <option>广告设计</option>
+            <option>室内设计</option>
+        </select>
+    </div>
+    <div class="form-item"><textarea name="需求描述" placeholder="请描述您的需求"></textarea></div>
+    <div class="form-item"><button type="submit" class="submit-btn">提交咨询</button></div>
+</form>
+<!-- 页脚 -->
+<footer class="footer">
+    <div class="container">
+        <div class="foot-wrap">
+            <div>
+                <h4>关于CCG</h4>
+                <ul>
+                    <li><a href="https://www.4399.com" target="_blank">工作室介绍</a></li>
+                    <li><a href="https://www.4399.com" target="_blank">案例展示</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>服务项目</h4>
+                <ul>
+                    <li><a href="https://www.4399.com" target="_blank">摄影服务</a></li>
+                    <li><a href="https://www.4399.com" target="_blank">网站建设</a></li>
+                    <li><a href="https://www.4399.com" target="_blank">广告设计</a></li>
+                    <li><a href="https://www.4399.com" target="_blank">室内装修</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>联系我们</h4>
+                <ul>
+                    <li><a href="tel:123456789">电话：123456789</a></li>
+                    <li><a href="https://www.4399.com" target="_blank">在线预约</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copy">© 2025 CCG工作室 版权所有</div>
+    </div>
+</footer>
+
+<script>
+    const btn = document.querySelector('.menu-btn');
+    const nav = document.querySelector('.nav');
+    btn.onclick = function(){
+        nav.style.display = nav.style.display=='block' ? 'none' : 'block';
+        nav.style.position='absolute';
+        nav.style.top='70px';
+        nav.style.left='0';
+        nav.style.width='100%';
+        nav.style.background='#fff';
+        nav.style.padding='15px';
+    }
+</script>
+</body>
+</html>
